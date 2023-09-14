@@ -20,8 +20,8 @@ enum CalculateButton: String {
     case zero = "0"
     case add = "+"
     case subtract = "-"
-    case multiply = "*"
-    case divide = "/"
+    case multiply = "×"
+    case divide = "÷"
     case equal = "="
     case clear = "AC"
     case decimal = "."
@@ -85,12 +85,12 @@ struct ContentView: View {
                                 self.madeTap(button: item)
                             }, label: {
                                 Text(item.rawValue)
-                                    .font(.system(size: 32))
+                                    .font(.system(size: 40))
                                     .frame(
                                         width: self.buttonWidth(item: item),
                                         height: self.buttonHeight())
                                     .background(item.buttonColor)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(self.buttonTextColor(item: item))
                                     .cornerRadius(self.buttonWidth(item: item)/2)
                             })
                         }
@@ -180,6 +180,15 @@ struct ContentView: View {
     
     func buttonHeight() -> CGFloat {
         return (UIScreen.main.bounds.width - (5*12)) / 4
+    }
+    
+    func buttonTextColor(item: CalculateButton) -> Color {
+        switch item {
+            case .clear, .negative, .percent:
+                return .black
+            default:
+                return .white
+        }
     }
 }
 
