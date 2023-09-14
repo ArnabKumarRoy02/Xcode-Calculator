@@ -92,6 +92,7 @@ struct ContentView: View {
                                     .background(item.buttonColor)
                                     .foregroundColor(self.buttonTextColor(item: item))
                                     .cornerRadius(self.buttonWidth(item: item)/2)
+                                    .multilineTextAlignment(self.buttonTextAlign(item: item))
                             })
                         }
                     }
@@ -188,6 +189,15 @@ struct ContentView: View {
                 return .black
             default:
                 return .white
+        }
+    }
+    
+    func buttonTextAlign(item: CalculateButton) -> TextAlignment {
+        switch item {
+            case .zero:
+                return .leading
+            default:
+                return .center
         }
     }
 }
